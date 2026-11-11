@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qulay Davo CRM</title>
+<style>
+:root{--bg:#f3f6f5;--card:#fff;--ink:#14212b;--mut:#6b7c86;--line:#e4ebe9;--acc:#0a7d56;--accl:#e3f3ec;--warn:#b45309;--bad:#dc2626;--blue:#2563eb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{margin:0 0 .4em;font-weight:650}h1{font-size:1.45rem}h3{font-size:1rem}
+small,.mut{color:var(--mut)}small{display:block;font-size:.8rem}
+.sh{display:flex;min-height:100vh}
+aside{width:236px;flex:none;background:#fff;border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.lg{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;margin:0 6px 18px}
+.lg i{width:34px;height:34px;border-radius:10px;background:var(--acc);color:#fff;display:grid;place-items:center;font:700 1.3rem system-ui;font-style:normal}
+.lb{font-size:.7rem;letter-spacing:.08em;margin:8px 10px 4px;color:var(--mut)}
+.nv{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;color:var(--ink);padding:10px 12px;border-radius:10px}
+.nv:hover{background:var(--bg)}.nv.on{background:var(--acc);color:#fff}
+.ic{width:18px;height:18px;flex:none}
+.ft{margin-top:auto;border-top:1px solid var(--line);padding-top:14px}
+.me{display:flex;gap:10px;align-items:center;margin-bottom:10px}.me i{width:36px;height:36px;border-radius:50%;background:var(--accl);color:var(--acc);display:grid;place-items:center;font-style:normal;font-weight:700}
+main{flex:1;min-width:0;padding:0 28px 40px}
+.tp{display:flex;align-items:center;gap:16px;padding:16px 0;margin-bottom:6px}
+.sr{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:0 12px;width:340px;max-width:100%}
+.sr input{border:0;outline:0;background:none;padding:10px 0;width:100%}
+button{font:inherit;font-weight:600;cursor:pointer;border:0;border-radius:9px;padding:9px 16px;background:var(--acc);color:#fff}
+button:hover{filter:brightness(1.08)}button.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+button.sm{padding:5px 10px;font-size:.82rem}button.sq{width:28px;height:28px;padding:0;background:var(--bg);color:var(--ink);border:1px solid var(--line)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+input,select,textarea{font:inherit;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);max-width:100%}
+label{display:block;font-weight:600;margin-bottom:12px}label input,label select{display:block;width:100%;margin-top:5px;font-weight:400}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.cd{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:16px}.g3 .cd{margin:0}
+.g2{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}.g2 .cd{margin-bottom:16px}
+.st b{display:block;font-size:2.2rem;line-height:1.1;margin:8px 0 4px}
+.fl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}
+th{text-align:left;color:var(--mut);font-weight:600;font-size:.8rem;background:var(--bg)}
+th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:middle}tr:last-child td{border-bottom:0}
+.bd{display:inline-flex;align-items:center;gap:6px;font-size:.82rem}.bd::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.bd.g{--c:#16a34a}.bd.b{--c:#2563eb}.bd.o{--c:#d97706}.bd.r{--c:#dc2626}
+.ch{display:flex;align-items:flex-end;gap:14px;height:180px;margin-top:10px;border-bottom:1px solid var(--line)}
+.col{flex:1;display:flex;align-items:flex-end;justify-content:center;gap:4px;height:100%}
+.col i{width:42%;border-radius:5px 5px 0 0;min-height:3px;display:block}.col .a{background:var(--acc)}.col .b{background:#a7d8c6}
+.xl{display:flex;gap:14px;margin-top:6px}.xl span{flex:1;text-align:center;color:var(--mut);font-size:.8rem}
+.lgd{display:flex;gap:16px;font-size:.8rem;color:var(--mut)}.lgd b{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;margin-top:8px}
+.cal span{color:var(--mut);font-size:.72rem}
+.cal button{background:none;color:var(--ink);padding:7px 0;position:relative;border-radius:50%;aspect-ratio:1}
+.cal button.dot::after{content:"";position:absolute;bottom:3px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--acc)}
+.cal button.td{outline:1.5px solid var(--acc)}.cal button.on{background:var(--acc);color:#fff}.cal button.on::after{background:#fff}
+.pg{display:flex;justify-content:space-between;align-items:center;margin-top:14px;flex-wrap:wrap;gap:8px}.pg div{display:flex;gap:6px}
+.pg button{background:#fff;color:var(--ink);border:1px solid var(--line);padding:6px 12px}.pg button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.em{text-align:center;color:var(--mut);padding:36px 0}
+.ov{position:fixed;inset:0;background:rgba(10,25,30,.45);display:grid;place-items:center;padding:16px;z-index:9;overflow:auto}
+.md{background:#fff;border-radius:16px;padding:24px;width:100%;max-width:520px;max-height:92vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.md .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.md .btns{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+.sl{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:7px;margin:6px 0 4px}.sl button{background:#fff;color:var(--acc);border:1px solid #a7d8c6;padding:7px 0}.sl button.on{background:var(--acc);color:#fff}
+#toast{position:fixed;right:24px;top:20px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--acc);padding:12px 18px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);transform:translateX(130%);transition:transform .25s;z-index:10;max-width:340px}
+#toast.show{transform:none}#toast.bad{border-left-color:var(--bad)}
+.warn{color:var(--warn)}.bad{color:var(--bad)}
+@media(max-width:860px){.sh{flex-direction:column}aside{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;align-items:center}.lb,.ft .me{display:none}.ft{margin:0 0 0 auto;border:0;padding:0}.g2{grid-template-columns:1fr}main{padding:0 14px 30px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ===== Medlink uslubi ===== */
+:root{--bg:#eef6f6;--acc:#2f8f9d;--accl:#e1f1f2;--line:#e0ecec;--ink:#12303a}
+body{background:radial-gradient(900px 600px at 8% -10%,#a8dadb,transparent 60%),radial-gradient(900px 700px at 100% 100%,#5fa8b3,transparent 55%),#8cc4c6;background-attachment:fixed}
+.sh{margin:18px;border-radius:30px;background:var(--bg);overflow:clip;min-height:calc(100vh - 36px);box-shadow:0 0 0 6px rgba(255,255,255,.35),0 24px 60px rgba(20,70,80,.28)}
+.lg i{border-radius:12px;background:linear-gradient(135deg,#43a8b4,#2f8f9d)}
+.nv{border-radius:99px;padding:11px 16px}.nv.on{background:var(--acc);box-shadow:0 6px 16px rgba(47,143,157,.35)}
+.cd{border-radius:20px;border:0;box-shadow:0 2px 12px rgba(40,100,110,.07)}
+button{border-radius:12px}.sr{border-radius:99px;border-color:transparent;box-shadow:0 1px 6px rgba(40,100,110,.08)}
+input,select{border-radius:12px}.md{border-radius:24px}
+@media(min-width:861px){aside{top:18px;height:calc(100vh - 36px);border:0;border-radius:0 26px 26px 0}}
+.dg{display:grid;grid-template-columns:290px minmax(0,1fr) 250px;gap:16px;align-items:start}
+.dg>div>.cd:last-child,.dg>.cd{margin-bottom:0}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:12px 0 8px}
+.wk button{background:none;color:var(--ink);padding:8px 0;border-radius:14px;line-height:1.25;font-size:1rem;position:relative}
+.wk small{font-size:.68rem}.wk button.on{background:var(--acc);color:#fff}.wk button.on small{color:#d4eef0}
+.wk button.dot::after{content:"";position:absolute;bottom:3px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--acc)}.wk button.on::after{background:#fff}
+.apr{display:flex;gap:10px;align-items:center;padding:9px 6px;border-radius:14px}.apr:hover{background:var(--accl)}.apr>div{flex:1;min-width:0}
+.tm{font-weight:700;color:var(--acc)}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:700;flex:none}
+.av.xl{width:86px;height:86px;font-size:2.1rem;margin:4px auto 12px}
+.cs{width:100%;height:auto}
+.gz{text-align:center}.gz svg{width:100%;max-width:200px}.gz b{display:block;font-size:2.1rem;margin-top:-34px}
+.dgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}.dc{text-align:center;margin:0}
+.chip{display:inline-block;background:var(--accl);color:var(--acc);padding:3px 12px;border-radius:99px;font-size:.82rem;font-weight:600}
+@media(max-width:1150px){.dg{grid-template-columns:1fr}.sh{margin:8px;border-radius:22px}}
+</style>
+</head>
+<body>
+<div id="app"></div><div id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s),TZ='Asia/Tashkent',P=h=>$('#pg').innerHTML=h;
+let token=localStorage.getItem('qd_t'),me=null,cur='dash',sel=null,FD=false,AD=false,PQ='',PG=1,PL=[],DB={},cab=null,I={};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const iso=d=>d.toLocaleDateString('sv',{timeZone:TZ});
+const hm=s=>new Date(s).toLocaleTimeString('ru-RU',{timeZone:TZ,hour:'2-digit',minute:'2-digit'});
+const dmy=s=>new Date(s).toLocaleDateString('ru-RU',{timeZone:TZ,day:'2-digit',month:'2-digit',year:'numeric'});
+const pad=n=>String(n).padStart(2,'0');
+const ST={booked:['Faol','g'],done:['Kelgan','b'],no_show:['Kelmagan','o'],cancelled:['Bekor qilingan','r']};
+const IS={available:'Mavjud',in_use:'Ishlatilmoqda',sterilizing:'Sterilizatsiyada',broken:'Buzuq'};
+const ROLE={admin:'Admin',receptionist:'Registrator',doctor:'Shifokor'};
+const DAYS=['Dushanba','Seshanba','Chorshanba','Payshanba','Juma','Shanba','Yakshanba'],WD=['Du','Se','Ch','Pa','Ju','Sh','Ya'];
+const bd=s=>`<span class="bd ${ST[s][1]}">${ST[s][0]}</span>`;
+const ic=p=>`<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const IC={dash:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>',
+ appts:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+ pts:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+ docs:'<path d="M3 12h4l3-8 4 16 3-8h4"/>',inv:'<path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',
+ search:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/>'};
+
+function toast(m,bad){const t=$('#toast');t.textContent=m;t.className='show'+(bad?' bad':'');clearTimeout(toast.h);toast.h=setTimeout(()=>t.className='',3500)}
+async function api(p,o={}){
+  const h={};if(token)h.Authorization='Bearer '+token;
+  if(o.json){h['Content-Type']='application/json';o.body=JSON.stringify(o.json)}
+  const r=await fetch(p,{method:o.method||'GET',headers:h,body:o.body});
+  const d=await r.json().catch(()=>null);
+  if(r.status===401){logout();throw new Error('Qaytadan kiring')}
+  if(!r.ok){let m=d&&d.detail;if(Array.isArray(m))m=m.map(e=>e.msg).join(', ');throw new Error(m||'Xatolik yuz berdi')}
+  return d}
+const run=f=>async(...a)=>{try{await f(...a)}catch(e){toast(e.message,1)}};
+const ask=(title,body,ok='Tasdiqlash')=>new Promise(r=>{const m=document.createElement('div');m.className='ov';
+  m.innerHTML=`<div class="md" style="max-width:420px"><h3>${title}</h3><p>${body}</p><div class="btns"><button class="ghost" data-v="0">Orqaga</button><button data-v="1">${ok}</button></div></div>`;
+  m.onclick=e=>{const v=e.target.dataset.v;if(v!==undefined||e.target===m){m.remove();r(v==='1')}};document.body.append(m)});
+function modal(h){const m=document.createElement('div');m.className='ov';m.innerHTML=`<div class="md">${h}</div>`;
+  m.onclick=e=>{if(e.target===m||e.target.dataset.x!==undefined)m.remove()};document.body.append(m);return m}
+const logout=()=>{localStorage.removeItem('qd_t');location.replace('index.html')};
+
+async function init(){
+  if(!token)return location.replace('index.html');
+  try{me=await api('/auth/me')}catch(e){return}
+  if(me.role=='patient')return location.replace('index.html');
+  FD=me.role!='doctor';AD=me.role=='admin';
+  const nav=[['dash','Boshqaruv paneli'],['appts','Navbatlar'],...(FD?[['pts','Bemorlar']]:[]),...(AD?[['docs','Shifokorlar']]:[]),['inv','Inventar']];
+  $('#app').innerHTML=`<div class="sh"><aside><div class="lg"><i>+</i>Qulay Davo</div><small class="lb">ASOSIY</small>
+  ${nav.map(([k,l])=>`<button class="nv" data-k="${k}" onclick="go('${k}')">${ic(IC[k])}${l}</button>`).join('')}
+  <div class="ft"><div class="me"><i>${esc(me.full_name[0])}</i><span>${esc(me.full_name)}<small>${ROLE[me.role]}</small></span></div><button class="ghost" style="width:100%" onclick="logout()">Chiqish</button></div></aside>
+  <main><div class="tp">${FD?`<div class="sr">${ic(IC.search)}<input id="gs" placeholder="Bemor qidirish (Enter)" aria-label="Qidirish" onkeydown="if(event.key=='Enter'){PQ=this.value;PG=1;go('pts')}"></div>`:''}</div><div id="pg"></div></main></div>`;
+  go('dash')}
+const PAGES={dash:()=>dash(),appts:()=>appts(),pts:()=>pts(),docs:()=>docs(),inv:()=>inv()};
+const go=run(async k=>{cur=k;document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.k==k));await PAGES[k]()});
+
+/* ---------- Boshqaruv paneli ---------- */
+const acts=a=>a.status=='booked'?`<button class="sm" onclick="setAp(${a.id},'done')">Keldi</button> <button class="sm ghost" onclick="setAp(${a.id},'no_show')">Kelmadi</button> <button class="sm ghost" onclick="cancelAp(${a.id})">Bekor</button>`:'';
+const setAp=run(async(id,status)=>{await api(`/appointments/${id}/status`,{method:'PATCH',json:{status}});toast('Holat yangilandi');go(cur)});
+const cancelAp=run(async id=>{if(!await ask('Navbat bekor qilinsinmi?','Bemor ogohlantirilmaydi, uni o\'zingiz xabardor qiling.','Ha, bekor qilish'))return;
+  await api(`/appointments/${id}/cancel`,{method:'PATCH'});toast('Navbat bekor qilindi');go(cur)});
+const rows=(l,date)=>l.length?`<div class="tw"><table><tr><th>Bemor<th>${date?'Sana va vaqt':'Vaqt'}<th>Shifokor<th>Holat<th></tr>${l.map(a=>`<tr><td>${esc(a.patient_name)}<td>${date?dmy(a.start_at)+' ':''}${hm(a.start_at)}<td>${esc(a.doctor_name)}<small>${esc(a.specialty)}</small><td>${bd(a.status)}<td style="white-space:nowrap">${acts(a)}</tr>`).join('')}</table></div>`:'<p class="em">Navbatlar yo\'q</p>';
+const stat=(l,v,c='')=>`<div class="cd st"><span class="mut">${l}</span><b class="${c}">${v}</b></div>`;
+const COL=['#2f8f9d','#6366f1','#f59e0b','#ec4899','#0ea5e9','#22c55e'];
+const avt=(id,n,c='')=>`<i class="av ${c}" style="background:${COL[id%COL.length]}">${esc((n||'?').replace(/^Dr\.?\s*/i,'')[0])}</i>`;
+async function dash(){
+  const t=iso(new Date());sel=sel||t;const [y,m]=t.split('-').map(Number),pre=t.slice(0,8);
+  const L=await api(`/appointments?date_from=${pre}01&date_to=${pre}${pad(new Date(y,m,0).getDate())}&limit=200`);
+  let n=null;if(FD){try{n=(await api('/patients?limit=200')).length}catch(e){}}
+  DB={};L.forEach(a=>(DB[iso(new Date(a.start_at))]??=[]).push(a));
+  const td=DB[t]||[],cnt=(l,s)=>l.filter(a=>a.status==s).length;
+  const dt=new Date(t+'T12:00:00'),mon=new Date(dt.getTime()-((dt.getDay()+6)%7)*864e5);
+  const days=[0,1,2,3,4,5,6].map(i=>iso(new Date(mon.getTime()+i*864e5)));
+  const wk=days.map(d=>(DB[d]||[]).length),mx=Math.max(1,...wk),X=i=>30+i*(500/6),Y=v=>150-v/mx*115;
+  let path=`M${X(0)} ${Y(wk[0])}`;for(let i=1;i<7;i++){const c=(X(i-1)+X(i))/2;path+=` C${c} ${Y(wk[i-1])} ${c} ${Y(wk[i])} ${X(i)} ${Y(wk[i])}`}
+  const done=cnt(L,'done'),miss=cnt(L,'no_show'),pct=done+miss?Math.round(done/(done+miss)*100):0;
+  P(`<div class="hd"><div><h1>Boshqaruv paneli</h1><small>${DAYS[(dt.getDay()+6)%7]}, ${dmy(t+'T12:00:00')}</small></div>${FD?'<button onclick="newAppt()">+ Yangi navbat</button>':''}</div>
+  <div class="dg"><div class="cd"><h3>Navbat jadvali</h3><div class="wk">${days.map((d,i)=>`<button data-d="${d}" class="${DB[d]?'dot':''}" onclick="sel='${d}';wkl()"><small>${WD[i]}</small>${+d.slice(8)}</button>`).join('')}</div><div id="wl"></div></div>
+  <div><div class="cd"><div class="hd" style="margin:0"><h3>Navbatlar oqimi</h3><span class="mut">shu hafta</span></div>
+  <svg class="cs" viewBox="0 0 560 190"><defs><linearGradient id="gf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f8f9d" stop-opacity=".35"/><stop offset="1" stop-color="#2f8f9d" stop-opacity="0"/></linearGradient></defs>
+  <path d="${path} L${X(6)} 160 L${X(0)} 160Z" fill="url(#gf)"/><path d="${path}" fill="none" stroke="#2f8f9d" stroke-width="3" stroke-linecap="round"/>
+  ${wk.map((v,i)=>`<circle cx="${X(i)}" cy="${Y(v)}" r="4.5" fill="#fff" stroke="#2f8f9d" stroke-width="2"><title>${v} ta navbat</title></circle><text x="${X(i)}" y="182" text-anchor="middle" font-size="12" fill="#6b7c86">${WD[i]}</text>`).join('')}</svg></div>
+  <div class="cd" id="dt"></div></div>
+  <div><div class="cd st"><span class="mut">Bugungi navbatlar</span><b>${td.length}</b><small>${cnt(td,'booked')} tasi kutilmoqda</small></div>
+  ${n!==null?`<div class="cd st"><span class="mut">Jami bemorlar</span><b>${n>=200?'200+':n}</b></div>`:''}
+  <div class="cd gz"><h3>Kelish ko'rsatkichi</h3><svg viewBox="0 0 160 95"><path d="M10 85A70 70 0 0 1 150 85" fill="none" stroke="#e1eeee" stroke-width="14" stroke-linecap="round"/><path d="M10 85A70 70 0 0 1 150 85" fill="none" stroke="#2f8f9d" stroke-width="14" stroke-linecap="round" stroke-dasharray="${pct*2.2} 220"/></svg><b>${pct}%</b><small>shu oy: kelganlar ulushi</small></div></div></div>`);
+  wkl()}
+function wkl(){
+  document.querySelectorAll('.wk button').forEach(b=>b.classList.toggle('on',b.dataset.d==sel));
+  const l=DB[sel]||[];
+  $('#wl').innerHTML=l.length?l.map(a=>`<div class="apr">${avt(a.patient_id,a.patient_name)}<div><b>${esc(a.patient_name)}</b><small>${esc(a.doctor_name)}</small></div><span class="tm">${hm(a.start_at)}</span></div>`).join(''):'<p class="em">Bu kunda navbat yo\'q</p>';
+  $('#dt').innerHTML=`<h3>${sel.split('-').reverse().join('.')}: bemorlar</h3>`+rows(l)}
+
+/* ---------- Navbatlar ---------- */
+async function appts(){
+  const t=iso(new Date()),e=iso(new Date(Date.now()+30*864e5));
+  P(`<div class="hd"><h1>Navbatlar</h1>${FD?'<button onclick="newAppt()">+ Yangi navbat</button>':''}</div><div class="cd"><div class="fl"><input type="date" id="f1" value="${t}" onchange="al()"><input type="date" id="f2" value="${e}" onchange="al()">
+  <select id="fs" onchange="al()"><option value="">Barcha holatlar</option>${Object.entries(ST).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join('')}</select>
+  <div class="sr">${ic(IC.search)}<input id="fq" placeholder="Bemor yoki shifokor" oninput="al()"></div></div><div id="al"></div></div>`);al()}
+const al=run(async()=>{
+  const q=`date_from=${$('#f1').value}&date_to=${$('#f2').value}&limit=200`+($('#fs').value?`&status=${$('#fs').value}`:'');
+  const s=$('#fq').value.toLowerCase(),l=(await api('/appointments?'+q)).filter(a=>(a.patient_name+a.doctor_name).toLowerCase().includes(s));
+  $('#al').innerHTML=rows(l,true)});
+
+/* ---------- Yangi navbat (tasdiqlash oynasi bilan) ---------- */
+const newAppt=run(async(pre)=>{
+  const ds=await api('/doctors?limit=100'),t=iso(new Date());let slot=null;
+  const m=modal(`<div class="hd"><h2 style="margin:0">Yangi navbat</h2><button class="ghost sm" data-x>✕</button></div>
+  <label>Bemor${pre?'':'<input id="pq" placeholder="Ism yoki telefon bo\'yicha qidiring">'}<select id="pp">${pre?`<option value="${pre.id}">${esc(pre.name)}</option>`:'<option value="">Avval qidiring...</option>'}</select></label>
+  <div class="row"><label>Shifokor<select id="pd">${ds.map(d=>`<option value="${d.id}">${esc(d.full_name)}, ${esc(d.specialty)}</option>`).join('')}</select></label>
+  <label>Sana<input type="date" id="pt" min="${t}" value="${t}"></label></div>
+  <div class="mut">Bo'sh vaqtlar</div><div class="sl" id="ps"></div>
+  <div class="btns"><button class="ghost" data-x>Bekor qilish</button><button id="pok" disabled>Navbatni belgilash</button></div>`);
+  const q=s=>m.querySelector(s);
+  const ls=run(async()=>{slot=null;q('#pok').disabled=true;const r=await api(`/doctors/${q('#pd').value}/slots?date=${q('#pt').value}`);
+    q('#ps').innerHTML=r.slots.length?r.slots.map(s=>`<button data-s="${s.start_at}">${hm(s.start_at)}</button>`).join(''):'<span class="mut">Bu kunda bo\'sh vaqt yo\'q</span>'});
+  q('#ps').onclick=e=>{const s=e.target.dataset.s;if(!s)return;slot=s;q('#pok').disabled=false;q('#ps').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===e.target))};
+  q('#pd').onchange=q('#pt').onchange=ls;ls();
+  if(!pre)q('#pq').oninput=function(){clearTimeout(window.pt);const v=this.value;window.pt=setTimeout(run(async()=>{const l=await api(`/patients?q=${encodeURIComponent(v)}&limit=20`);
+    q('#pp').innerHTML=l.length?l.map(p=>`<option value="${p.id}">${esc(p.full_name)} (+${p.phone})</option>`).join(''):'<option value="">Topilmadi</option>'}),300)};
+  q('#pok').onclick=run(async()=>{
+    const pp=q('#pp'),pid=pp.value,dd=q('#pd');if(!pid){toast('Bemorni tanlang',1);return}
+    const pn=pp.selectedOptions[0].textContent.replace(/\s*\(.*$/,''),dn=dd.selectedOptions[0].textContent;
+    if(!await ask('Navbat tasdiqlansinmi?',`<b>${esc(pn)}</b> ${dmy(slot)} kuni soat <b>${hm(slot)}</b> ga, ${esc(dn)} qabuliga yoziladi.`))return;
+    await api('/appointments',{method:'POST',json:{doctor_id:+dd.value,start_at:slot,patient_id:+pid}});
+    m.remove();toast('Navbat yaratildi ✓');go(cur)})});
+
+/* ---------- Bemorlar ---------- */
+async function pts(){
+  P(`<div class="hd"><h1>Bemorlar</h1><button onclick="newPt()">+ Yangi bemor</button></div><div class="cd"><div class="fl"><div class="sr">${ic(IC.search)}<input id="pq" value="${esc(PQ)}" placeholder="Ism yoki telefon" aria-label="Qidirish" oninput="const v=this.value;clearTimeout(window.t);window.t=setTimeout(()=>{PQ=v;PG=1;ptl()},300)"></div></div><div id="pl"></div></div>`);ptl()}
+const ptl=run(async()=>{PL=await api(`/patients?q=${encodeURIComponent(PQ)}&limit=200`);drawP()});
+function drawP(){
+  const N=PL.length,s=(PG-1)*10,r=PL.slice(s,s+10),pages=Math.ceil(N/10);
+  $('#pl').innerHTML=N?`<div class="tw"><table><tr><th>Bemor<th>Telefon<th>Telegram<th></tr>${r.map(p=>`<tr><td><b>${esc(p.full_name)}</b><small>ID ${p.id}</small><td>+${esc(p.phone)}<td>${p.telegram_linked?'<span class="bd g">ulangan</span>':'<span class="mut">yo\'q</span>'}<td><button class="sm" data-n="${esc(p.full_name)}" onclick="newAppt({id:${p.id},name:this.dataset.n})">Navbat yozish</button></tr>`).join('')}</table></div>
+  <div class="pg"><span class="mut">${N} ta bemordan ${s+1}-${Math.min(s+10,N)} ko'rsatilmoqda</span><div>${Array.from({length:Math.min(pages,6)},(_,i)=>`<button class="${i+1==PG?'on':''}" onclick="PG=${i+1};drawP()">${i+1}</button>`).join('')}</div></div>`:'<p class="em">Bemor topilmadi</p>'}
+const newPt=()=>{const m=modal(`<div class="hd"><h2 style="margin:0">Yangi bemor</h2><button class="ghost sm" data-x>✕</button></div><form id="pf"><label>Ism-familiya<input name="full_name" required minlength="2"></label><label>Telefon<input name="phone" placeholder="+998 90 123 45 67" required></label><div class="btns"><button type="button" class="ghost" data-x>Bekor qilish</button><button>Qo'shish</button></div></form>`);
+  m.querySelector('#pf').onsubmit=run(async e=>{e.preventDefault();const r=await api('/patients',{method:'POST',json:Object.fromEntries(new FormData(e.target))});m.remove();
+    await ask('Bemor qo\'shildi',`Saytga kirish uchun vaqtinchalik parol: <b>${esc(r.temp_password)}</b><br><small>Bemor uni botdagi /parol bilan almashtira oladi.</small>`,'Tushunarli');ptl()})};
+
+/* ---------- Shifokorlar (admin) ---------- */
+async function docs(){
+  const ds=await api('/doctors?limit=100');
+  P(`<div class="hd"><h1>Shifokorlar</h1><div><button class="ghost" onclick="newCab()">+ Kabinet</button> <button onclick="newDoc()">+ Shifokor</button></div></div>${ds.length?`<div class="dgr">${ds.map(d=>`<div class="cd dc">${avt(d.id,d.full_name,'xl')}<h3>${esc(d.full_name)}</h3><span class="chip">${esc(d.specialty)}</span><p class="mut">${esc(d.cabinet_name||'Kabinetsiz')} · ${d.slot_minutes} daqiqa</p><button class="ghost" onclick="sched(${d.id})">Ish jadvali</button></div>`).join('')}</div>`:'<p class="em">Shifokor yo\'q</p>'}`)}
+const newCab=()=>{const m=modal(`<div class="hd"><h2 style="margin:0">Kabinet qo'shish</h2><button class="ghost sm" data-x>✕</button></div><form id="cf"><label>Nomi<input name="name" placeholder="Kabinet 102" required></label><label>Qavat<input name="floor" type="number" min="0" value="1"></label><div class="btns"><button type="button" class="ghost" data-x>Bekor qilish</button><button>Qo'shish</button></div></form>`);
+  m.querySelector('#cf').onsubmit=run(async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target));await api('/cabinets',{method:'POST',json:{name:f.name,floor:+f.floor}});m.remove();toast('Kabinet qo\'shildi');docs()})};
+const newDoc=run(async()=>{const cs=await api('/cabinets');
+  const m=modal(`<div class="hd"><h2 style="margin:0">Shifokor qo'shish</h2><button class="ghost sm" data-x>✕</button></div><form id="df"><label>Ism-familiya<input name="full_name" required minlength="2"></label><div class="row"><label>Telefon<input name="phone" required></label><label>Parol<input name="password" type="password" minlength="6" required></label></div>
+  <div class="row"><label>Mutaxassislik<input name="specialty" required></label><label>Kabinet<select name="cabinet_id"><option value="">Kabinetsiz</option>${cs.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select></label></div>
+  <label>Bir navbat davomiyligi (daqiqa)<input name="slot_minutes" type="number" min="5" max="120" value="30"></label><div class="btns"><button type="button" class="ghost" data-x>Bekor qilish</button><button>Qo'shish</button></div></form>`);
+  m.querySelector('#df').onsubmit=run(async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target));
+    await api('/doctors',{method:'POST',json:{...f,cabinet_id:f.cabinet_id?+f.cabinet_id:null,slot_minutes:+f.slot_minutes}});m.remove();toast('Shifokor qo\'shildi');docs()})});
+const sched=run(async id=>{
+  const s=await api(`/doctors/${id}/schedule`),v=(d,i,k)=>{const x=s.filter(r=>r.weekday==d)[i];return x?x[k?'end_time':'start_time'].slice(0,5):''};
+  const m=modal(`<div class="hd"><h2 style="margin:0">Ish jadvali</h2><button class="ghost sm" data-x>✕</button></div><p class="mut">2-oraliq tushlikdan keyingi smena uchun. Bo'sh qolsa, dam olish kuni.</p><div class="tw"><table><tr><th>Kun<th>1-oraliq<th>2-oraliq</tr>${DAYS.map((n,d)=>`<tr><td>${n}<td><input type="time" data-d="${d}" data-k="0" value="${v(d,0,0)}"> <input type="time" data-d="${d}" data-k="1" value="${v(d,0,1)}"><td><input type="time" data-d="${d}" data-k="2" value="${v(d,1,0)}"> <input type="time" data-d="${d}" data-k="3" value="${v(d,1,1)}"></tr>`).join('')}</table></div><div class="btns"><button class="ghost" data-x>Yopish</button><button id="sv">Saqlash</button></div>`);
+  m.querySelector('#sv').onclick=run(async()=>{const items=[],q=(d,k)=>m.querySelector(`[data-d="${d}"][data-k="${k}"]`).value;
+    for(let d=0;d<7;d++)for(const k of [0,2]){const a=q(d,k),b=q(d,k+1);if(a&&b)items.push({weekday:d,start_time:a,end_time:b})}
+    await api(`/doctors/${id}/schedule`,{method:'PUT',json:{items}});m.remove();toast('Ish jadvali saqlandi ✓')})});
+
+/* ---------- Inventar ---------- */
+async function inv(){
+  const cs=await api('/cabinets');
+  if(me.role=='doctor'){const ds=await api('/doctors?limit=100'),d=ds.find(x=>x.full_name==me.full_name);if(d&&d.cabinet_id)cab=d.cabinet_id}
+  cab=cab||(cs[0]&&cs[0].id);
+  if(!cab){P('<p class="em">Kabinet topilmadi</p>');return}
+  P(`<div class="hd"><h1>Kabinet inventari</h1><select onchange="cab=+this.value;invl()" aria-label="Kabinet">${cs.map(c=>`<option value="${c.id}" ${c.id==cab?'selected':''}>${esc(c.name)}</option>`).join('')}</select></div><div id="iv"></div>`);invl()}
+const invl=run(async()=>{
+  const [o,items,logs]=await Promise.all([api(`/cabinets/${cab}/instruments/overview`),api(`/cabinets/${cab}/instruments`),api(`/cabinets/${cab}/instruments/logs?limit=10`)]);
+  I={};items.forEach(i=>I[i.id]=i);const w=me.role!='receptionist';
+  $('#iv').innerHTML=`<div class="g3">${stat('Asbob turlari',o.total_kinds)}${stat('Jami dona',o.total_units)}${stat('Kam qolgan',o.low_stock.length,o.low_stock.length?'warn':'')}${stat('Buzuq',o.broken.length,o.broken.length?'bad':'')}</div>
+  <div class="cd tw"><table><tr><th>Asbob<th>Soni<th>Minimum<th>Holati</tr>${items.map(i=>`<tr><td>${esc(i.name)}<small>${esc(i.category||'')}</small><td style="white-space:nowrap">${w?`<button class="sq" onclick="adj(${i.id},-1)" aria-label="Kamaytirish">−</button> `:''}<b class="${i.quantity==0?'bad':i.is_low?'warn':''}">${i.quantity}</b>${w?` <button class="sq" onclick="adj(${i.id},1)" aria-label="Ko'paytirish">+</button>`:''}<td>${i.min_quantity}<td>${w?`<select onchange="setSt(${i.id},this.value)">${Object.entries(IS).map(([k,v])=>`<option value="${k}" ${k==i.status?'selected':''}>${v}</option>`).join('')}</select>`:IS[i.status]}</tr>`).join('')}</table></div>
+  ${o.missing.length?`<div class="cd"><h3>Kabinetda yo'q asboblar</h3>${o.missing.map(x=>`<button class="ghost sm" data-n="${esc(x.name)}" onclick="$('#an').value=this.dataset.n;$('#an').focus()">${esc(x.name)}</button> `).join('')}</div>`:''}
+  ${w?`<form class="cd fl" onsubmit="addItem(event)" style="align-items:center"><h3 style="margin:0 8px 0 0">Asbob qo'shish</h3><input id="an" name="name" placeholder="Nomi" required><input name="quantity" type="number" min="0" value="1" style="width:84px" aria-label="Soni"><input name="min_quantity" type="number" min="0" value="1" style="width:84px" aria-label="Minimum"><button>Qo'shish</button></form>`:''}
+  <div class="cd"><h3>So'nggi o'zgarishlar</h3>${logs.length?logs.map(l=>`<p style="margin:6px 0"><b>${esc(l.instrument_name)}</b>: ${esc(l.reason||'')} <span class="mut">(${esc(l.user_name||'tizim')}, ${new Date(l.created_at).toLocaleString('ru-RU',{timeZone:TZ})})</span></p>`).join(''):'<p class="mut">Hali o\'zgarish yo\'q</p>'}</div>`});
+const patch=(id,json)=>api(`/cabinets/${cab}/instruments/${id}`,{method:'PATCH',json});
+const adj=run(async(id,d)=>{const q=I[id].quantity+d;if(q<0)return;await patch(id,{quantity:q,reason:'Panel orqali'});invl()});
+const setSt=run(async(id,status)=>{await patch(id,{status,reason:'Panel orqali'});toast('Holat yangilandi');invl()});
+const addItem=run(async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target));
+  await api(`/cabinets/${cab}/instruments`,{method:'POST',json:{name:f.name,quantity:+f.quantity,min_quantity:+f.min_quantity}});toast('Asbob qo\'shildi');invl()});
+
+init();
+</script>
+</body>
+</html>

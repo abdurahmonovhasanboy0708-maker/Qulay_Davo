@@ -1,0 +1,61 @@
+### PyCharm HTTP Client. Avval: docker compose up --build  va  python -m app.scripts.seed
+@host = http://127.0.0.1:8000
+
+### 1. Bemor kirishi (token avtomatik saqlanadi)
+POST {{host}}/auth/login
+Content-Type: application/x-www-form-urlencoded
+
+username=998900000003&password=patient123
+
+> {% client.global.set("token", response.body.access_token); %}
+
+### 2. Shifokorlar
+GET {{host}}/doctors?specialty=stom
+
+### 3. Bo'sh vaqtlar (sanani o'zgartiring - ish kuni bo'lsin)
+GET {{host}}/doctors/1/slots?date=2026-11-05
+
+### 4. Navbat olish (start_at ni 3-so'rov javobidagi slotdan oling)
+POST {{host}}/appointments
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"doctor_id": 1, "start_at": "2026-11-05T10:00:00+05:00"}
+
+### 5. Mening navbatlarim
+GET {{host}}/appointments/my
+Authorization: Bearer {{token}}
+
+### 6. Navbatni bekor qilish
+PATCH {{host}}/appointments/1/cancel
+Authorization: Bearer {{token}}
+
+### 7. Shifokor kirishi
+POST {{host}}/auth/login
+Content-Type: application/x-www-form-urlencoded
+
+username=998900000002&password=doctor123
+
+> {% client.global.set("doc_token", response.body.access_token); %}
+
+### 8. Kabinet inventari - umumiy ko'rinish (bor / kam / buzuq / yo'q)
+GET {{host}}/cabinets/1/instruments/overview
+Authorization: Bearer {{doc_token}}
+
+### 9. Asbob qo'shish (katalogda bo'lmasa avtomatik yaratiladi)
+POST {{host}}/cabinets/1/instruments
+Authorization: Bearer {{doc_token}}
+Content-Type: application/json
+
+{"name": "Dental tokar", "category": "Terapiya", "quantity": 2, "min_quantity": 1}
+
+### 10. Sonini o'zgartirish
+PATCH {{host}}/cabinets/1/instruments/5
+Authorization: Bearer {{doc_token}}
+Content-Type: application/json
+
+{"quantity": 10, "reason": "Yangi partiya keldi"}
+
+### 11. O'zgarishlar tarixi (audit)
+GET {{host}}/cabinets/1/instruments/logs
+Authorization: Bearer {{doc_token}}
